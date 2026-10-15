@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MatakuliahController;
 
+// Halaman Utama (Home)
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/pcr', function () {
@@ -14,7 +16,7 @@ Route::get('/pcr', function () {
 
 Route::get('/mahasiswa', function () {
     return 'Halo Mahasiswa';
-});
+})->name('mahasiswa.show');
 
 Route::get('/nama/{param1}', function ($param1) {
     return 'Nama saya: '.$param1;
@@ -24,19 +26,13 @@ Route::get('/nim/{param1?}', function ($param1 = '') {
     return 'NIM saya: '.$param1;
 });
 
-Route::get('/mahasiswa', function () {
-    return 'Halo Mahasiswa';
-})->name('mahasiswa.show');
-
 Route::get('/mahasiswa/{param1}', [MahasiswaController::class, 'show']);
 
 Route::get('/about', function () {
     return view('halaman-about');
 });
 
-// latihan
-use App\Http\Controllers\MatakuliahController;
-
+// Route Matakuliah
 Route::get('/matakuliah', [MatakuliahController::class, 'index']);
 Route::get('/matakuliah/create', [MatakuliahController::class, 'create']);
 Route::post('/matakuliah', [MatakuliahController::class, 'store']);
@@ -44,3 +40,7 @@ Route::get('/matakuliah/show/{kode?}', [MatakuliahController::class, 'show']);
 Route::get('/matakuliah/edit/{kode}', [MatakuliahController::class, 'edit']);
 Route::put('/matakuliah/{kode}', [MatakuliahController::class, 'update']);
 Route::delete('/matakuliah/{kode}', [MatakuliahController::class, 'destroy']);
+
+// Route Form Pertanyaan
+Route::post('question/store', [QuestionController::class, 'store'])
+    ->name('question.store');
