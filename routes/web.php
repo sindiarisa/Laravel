@@ -5,6 +5,9 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\DashboardController;
+use App\Models\Pelanggan;
+use Illuminate\Http\Request;
+use App\Http\Controllers\PelangganController;
 
 // Halaman Utama (Home)
 Route::get('/', function () {
@@ -51,3 +54,6 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/tes', function () {
     return 'Laravel Berhasil!';
 });
+
+Route::resource('pelanggan', PelangganController::class);
+
