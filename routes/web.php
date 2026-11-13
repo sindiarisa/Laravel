@@ -8,6 +8,14 @@ use App\Http\Controllers\DashboardController;
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\UserController;
+
+// Pastikan route dashboard memiliki ->name('dashboard')
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// Daftarkan resource user
+
+Route::resource('user', UserController::class);
 
 // Halaman Utama (Home)
 Route::get('/', function () {
@@ -56,4 +64,3 @@ Route::get('/tes', function () {
 });
 
 Route::resource('pelanggan', PelangganController::class);
-
